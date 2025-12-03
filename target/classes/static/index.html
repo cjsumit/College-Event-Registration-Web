@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RRIMT Event Portal</title>
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-brand">
+        <div class="logo-circle">RR</div>
+        <div class="brand-text">
+          <h1>RR Institute Of Modern Technology</h1>
+          <p>Lucknow, Uttar Pradesh</p>
+        </div>
+      </div>
+      <div class="nav-menu">
+        <button class="nav-btn active" data-view="home">Home</button>
+        <button class="nav-btn" data-view="events">Events</button>
+        <button class="nav-btn" data-view="dashboard">Student Zone</button>
+        <button class="nav-btn" data-view="contact">Contact</button>
+        <button id="adminBtn" class="nav-btn outline">Admin</button>
+      </div>
+      <div class="theme-toggle">
+        <select id="themeSelect">
+          <option value="default">Day Mode</option>
+          <option value="dark">Night Mode</option>
+        </select>
+      </div>
+    </nav>
+
+    <main class="app-container">
+      
+      <!-- HOME VIEW -->
+      <section id="home" class="view">
+        <div class="hero-section">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <span class="badge">EST. 2008</span>
+            <h2 id="eventNameHero">TECH-AAGAZ 2025</h2>
+            <p class="lead">The Annual Techno-Cultural Fest of RRIMT.</p>
+            <div class="hero-actions">
+              <button class="btn primary big" data-view="register">Register Now</button>
+              <button class="btn secondary big" data-view="events">Browse Events</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Latest Highlights</h3>
+            <div id="highlightsList" class="scroll-list"></div>
+          </div>
+          <div class="info-card feature">
+            <h3>Why Participate?</h3>
+            <ul>
+              <li>🎓 University Certification</li>
+              <li>🏆 Cash Prizes worth ₹2 Lakhs</li>
+              <li>🍕 Free Food Coupons</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- EVENTS VIEW -->
+      <section id="events" class="view" style="display:none">
+        <div class="section-header">
+          <h2>Upcoming Events</h2>
+          <p>Select an event to view details</p>
+        </div>
+        <div id="eventsList" class="cards-grid"></div>
+      </section>
+
+      <!-- EVENT DETAILS VIEW -->
+      <section id="eventDetails" class="view" style="display:none">
+        <div class="detail-container">
+          <button id="backToEvents" class="btn text-btn">← Back to List</button>
+          
+          <div class="detail-header-box">
+             <h2 id="evTitle">Event Title</h2>
+             <div id="evMeta" class="meta-row"></div>
+          </div>
+
+          <div class="detail-content">
+            <div class="detail-main">
+              <h4>Description</h4>
+              <p id="evDesc"></p>
+              
+              <div class="rules-box">
+                <h4>Rules & Regulations</h4>
+                <pre id="evRules"></pre>
+              </div>
+            </div>
+            
+            <div class="detail-sidebar">
+              <div class="sidebar-box">
+                <h4>Registration Fee</h4>
+                <div id="evFee" class="price-tag"></div>
+                <button class="btn primary full" id="evRegisterBtn">Register Now</button>
+              </div>
+              <div class="sidebar-box">
+                <h4>Prizes</h4>
+                <div id="evPrizes"></div>
+                <h4 style="margin-top:15px">Coordinators</h4>
+                <div id="evCoordinators"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REGISTER VIEW -->
+      <section id="register" class="view" style="display:none">
+        <div class="form-wrapper">
+          <div class="form-header">
+            <h2>Student Registration</h2>
+            <p>Fill in your details carefully</p>
+          </div>
+          
+          <form id="regForm">
+            <div class="form-group">
+               <label>Full Name *</label>
+               <input id="studentName" required placeholder="Ex: Sumit Vishwakarma" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Roll Number</label>
+                <input id="roll" placeholder="Ex: 123456" />
+              </div>
+              <div class="form-group">
+                <label>Year / Branch</label>
+                <input id="yearBranch" placeholder="Ex: 3rd Year CSE" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Select Event *</label>
+              <select id="eventSelect"></select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Tickets</label>
+                <input id="tickets" type="number" min="1" value="1"/>
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input id="phone" />
+              </div>
+            </div>
+            <div class="form-group">
+               <label>Email ID *</label>
+               <input id="email" type="email" required placeholder="student@rrimt.ac.in"/>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" id="resetBtn" class="btn secondary">Reset</button>
+              <button type="submit" class="btn primary">Confirm Registration</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- DASHBOARD VIEW -->
+      <section id="dashboard" class="view" style="display:none">
+        <div class="dashboard-container">
+          <h2>Check Your Status</h2>
+          <div class="search-box">
+            <input id="dashEmail" placeholder="Enter registered email to search..." />
+            <button id="dashLookup" class="btn primary">Search</button>
+          </div>
+          <div id="dashResults" class="results-area"></div>
+        </div>
+      </section>
+
+      <!-- ADMIN LOGIN VIEW -->
+      <section id="adminLogin" class="view" style="display:none">
+        <div class="form-wrapper small">
+          <h2>Admin Portal</h2>
+          <div class="form-group"><label>Username</label><input id="adminUser"/></div>
+          <div class="form-group"><label>Password</label><input id="adminPass" type="password"/></div>
+          <button id="adminLoginBtn" class="btn primary full">Login</button>
+        </div>
+      </section>
+
+      <!-- ADMIN DASHBOARD VIEW -->
+      <section id="adminDashboard" class="view" style="display:none">
+        <div class="dashboard-container">
+          <div class="dash-header">
+            <h2>Admin Control</h2>
+            <button id="adminLogout" class="btn secondary">Logout</button>
+          </div>
+          <div class="admin-grid">
+            <div id="adminArea" class="admin-panel"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT VIEW -->
+      <section id="contact" class="view" style="display:none">
+        <div class="form-wrapper">
+          <h2>Contact Us</h2>
+          <div id="coordinatorsList" style="margin-bottom:20px">
+            <p><strong>Address:</strong> NH-24, Bakshi Ka Talab, Sitapur Road, Lucknow</p>
+            <p><strong>Email:</strong> event@rrimt.ac.in</p>
+          </div>
+          <h3>Send a Query</h3>
+          <div class="form-group"><input id="qName" placeholder="Name"/></div>
+          <div class="form-group"><input id="qEmail" placeholder="Email"/></div>
+          <div class="form-group"><textarea id="qMsg" placeholder="Message" rows="4"></textarea></div>
+          <button id="qSend" class="btn primary">Submit Query</button>
+        </div>
+      </section>
+
+    </main>
+
+    <div id="toast" class="toast"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

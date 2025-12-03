@@ -1,0 +1,6 @@
+com\college\event\Main.class
+com\college\event\Database.class
+com\college\event\Registration.class
+com\college\event\RegistrationGUI$1.class
+com\college\event\RegistrationGUI.class
+com\college\event\Event.class
